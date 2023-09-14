@@ -20,7 +20,7 @@ public class ApiController
     private RegionService regionService;
 
     @PostMapping(value = "/process-xml", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void receiveFile(@RequestParam("file") List<MultipartFile> files) throws Exception {
+    public void receiveFile(@RequestParam("files") List<MultipartFile> files) throws Exception {
         for (MultipartFile file : files) {
             var xmlObject = processXmlFileService.proccessXmlData(file);
             processXmlFileService.printAgentCodeFromList(xmlObject);

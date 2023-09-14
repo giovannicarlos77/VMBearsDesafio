@@ -1,0 +1,105 @@
+<style>
+  .progress-container {
+    position: relative;
+  }
+
+  .progress-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap; /* Evita que o texto se divida em várias linhas */
+    margin-top: -30px;
+  }
+</style>
+
+<div class="flex items-center justify-center p-12">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <div class="mx-auto w-full max-w-[550px] bg-white">
+    <form class="py-6 px-9">
+      <div class="mb-6 pt-4">
+        <label class="block text-xl font-semibold text-[#07074D]"
+          >Faça upload dos XMLs</label
+        >
+        <div
+          class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0] p-12 text-center"
+        >
+          <!-- Use a label to style the file input -->
+          <label
+            for="file"
+            class="inline-flex rounded border border-[#e0e0e0] py-2 px-7 text-base font-medium text-[#07074D] cursor-pointer"
+          >
+            Selecione os arquivos
+          </label>
+          <!-- Keep the file input, but style it as transparent -->
+          <input
+            type="file"
+            name="file"
+            id="file"
+            (change)="onFileSelected($event)"
+            class="absolute w-full h-full opacity-0 cursor-pointer custom-input"
+          />
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <mat-label class="block text-xl font-semibold text-[#07074D]">
+          Arquivos selecionados
+        </mat-label>
+
+        <mat-list>
+          <mat-list-item
+            *ngFor="let file of files"
+            class="rounded-md bg-[#F5F7FB] py-2 px-4 mb-2 custom-list-item"
+          >
+            <div class="flex items-center justify-between">
+              <span class="truncate pr-3 text-base font-medium text-[#07074D]">
+                {{ file.name }}
+              </span>
+              <button class="text-[#07074D]" (click)="onFileRemove(file)">
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 10 10"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.279337 0.279338C0.651787 -0.0931121 1.25565 -0.0931121 1.6281 0.279338L9.72066 8.3719C10.0931 8.74435 10.0931 9.34821 9.72066 9.72066C9.34821 10.0931 8.74435 10.0931 8.3719 9.72066L0.279337 1.6281C-0.0931125 1.25565 -0.0931125 0.651788 0.279337 0.279338Z"
+                    fill="currentColor"
+                  />
+                  <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M0.279337 9.72066C-0.0931125 9.34821 -0.0931125 8.74435 0.279337 8.3719L8.3719 0.279338C8.74435 -0.0931127 9.34821 -0.0931123 9.72066 0.279338C10.0931 0.651787 10.0931 1.25565 9.72066 1.6281L1.6281 9.72066C1.25565 10.0931 0.651787 10.0931 0.279337 9.72066Z"
+                    fill="currentColor"
+                  />
+                </svg>
+              </button>
+            </div>
+          </mat-list-item>
+        </mat-list>
+      </div>
+
+      <div *ngIf="showProgressBar" class="progress-container">
+        <mat-progress-bar mode="indeterminate" [style.height.px]="20">
+        </mat-progress-bar>
+        <div class="progress-message">{{ progressMessage }}</div>
+      </div>
+
+      <div>
+        <button
+          mat-raised-button
+          class="w-full rounded-md bg-[#6A64F1] py-3 px-8 text-center text-base font-semibold text-white outline-none custom-send-button"
+          type="button"
+          (click)="sendFiles()"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
