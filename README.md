@@ -32,7 +32,7 @@ A primeira API do backend permite que você processe arquivos XML. Você pode en
 http://localhost:8080/process-xml
 ```
 
-Para usar esta API, envie os arquivos XML desejados no corpo da solicitação HTTP como um formulário `multipart`. O servidor processará os arquivos XML e fornecerá uma resposta adequada.
+Para usar esta API, envie os arquivos XML desejados no corpo da solicitação HTTP como um formulário `multipart` e o form-data nomeada por `files`. O servidor processará os arquivos XML e fornecerá uma resposta adequada.
 
 ## API 2: Encontrar Região por Sigla
 
